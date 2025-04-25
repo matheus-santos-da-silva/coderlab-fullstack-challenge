@@ -1,0 +1,19 @@
+@use "@/styles/variables" as var;
+
+.product-list-container {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+
+  .product-list-filter {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+
+  .product-list-input {
+    color: var.$primary-gray;
+    border-color: var.$primary-gray;
+  }
+}
