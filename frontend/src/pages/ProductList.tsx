@@ -23,7 +23,7 @@ export const ProductList = () => {
           className="product-list-input"
           onChange={(e) => setFilter(e.target.value)}
         />
-        <Link href="/products/0">
+        <Link href="/product/0">
           <Button colorPalette="teal">Adicionar Produto</Button>
         </Link>
       </div>
