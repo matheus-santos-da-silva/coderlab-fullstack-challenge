@@ -34,7 +34,6 @@ export const ProductForm = () => {
   const { id } = useParams<{ id: string }>();
 
   const product = location.state?.product as Product | undefined;
-  console.log(product);
 
   const productId = id || "0";
   const { createProduct: create } = useCreateProduct();
@@ -48,7 +47,7 @@ export const ProductForm = () => {
       name: product?.name || "",
       qtd: product?.qty || undefined,
       price: product?.price || undefined,
-      category: product?.categories?.[0]?.name || "",
+      category: product?.categories?.[0]?.id || "",
       photo: undefined,
     },
   });
@@ -63,8 +62,8 @@ export const ProductForm = () => {
     if (productId === "0") {
       await create({
         name,
-        category,
-        photo: photo!.name,
+        categoryIds: [category],
+        photo,
         price,
         qty: qtd,
       });
@@ -78,8 +77,8 @@ export const ProductForm = () => {
     } else {
       await update(productId, {
         name,
-        category,
-        photo: photo!.name,
+        categoryIds: [category],
+        photo,
         price,
         qty: qtd,
       });
@@ -127,7 +126,10 @@ export const ProductForm = () => {
                     placeholder="ex. 250"
                     type="number"
                     value={field.value || ""}
-                    onChange={(e) => field.onChange(Number(e.target.value))}
+                    onChange={(e) => {
+                      const numericValue = e.target.value.replace(",", ".");
+                      field.onChange(numericValue ? Number(numericValue) : "");
+                    }}
                   />
                 </FormControl>
                 <FormMessage className="error-message" />{" "}
@@ -179,8 +181,8 @@ export const ProductForm = () => {
                     ) : categories.length > 0 ? (
                       categories.map((category) => (
                         <SelectItem
-                          key={category.name}
-                          value={category.name}
+                          key={category.id}
+                          value={category.id}
                           className="hover:bg-teal-50 focus:bg-teal-50 cursor-pointer text-gray-800 w-full"
                         >
                           {category.name}

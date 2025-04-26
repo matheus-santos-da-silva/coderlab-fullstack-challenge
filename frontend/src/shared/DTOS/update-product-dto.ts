@@ -1,7 +1,7 @@
 export interface UpdateProductDTO {
-  category?: string;
+  categoryIds: string[];
   name?: string;
   qty?: number;
   price?: number;
-  photo?: string;
+  photo?: File;
 }
