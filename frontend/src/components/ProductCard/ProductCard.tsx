@@ -6,12 +6,28 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Product } from "@/shared/DTOS/product-dto";
-import { Button, Image, Link, Text, Box } from "@chakra-ui/react";
+import { Button, Image, Text, Box } from "@chakra-ui/react";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 
 import "../../styles/product-card.scss";
 
 export const ProductCard = ({ product }: { product: Product }) => {
+  const navigate = useNavigate();
+
+  const { deleteProduct: deleteProduct } = useDeleteProduct();
+
+  const handleEdit = () => {
+    navigate(`/product/${product.id}`, {
+      state: { product },
+    });
+  };
+
+  const handleDelete = async () => {
+    await deleteProduct(product.id);
+  };
+
   return (
     <Card className="product-card-container">
       <CardHeader className="header">
@@ -45,14 +61,22 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </Text>
       </CardContent>
       <CardFooter className="product-card-footer">
-        <Link href={`/product/${product.id}`}>
-          <Button size="sm" colorPalette="teal" variant="solid" mr={2}>
-            <FiEdit2 />
-            Editar
-          </Button>
-        </Link>
+        <Button
+          onClick={handleEdit}
+          size="sm"
+          colorPalette="teal"
+          variant="solid"
+          mr={2}
+        >
+          <FiEdit2 />
+          Editar
+        </Button>
 
-        <Button className="product-list-remove-btb" size="sm">
+        <Button
+          onClick={handleDelete}
+          className="product-list-remove-btb"
+          size="sm"
+        >
           <FiTrash2 /> Remover
         </Button>
       </CardFooter>
