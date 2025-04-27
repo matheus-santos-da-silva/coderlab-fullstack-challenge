@@ -38,16 +38,14 @@ export const ProductCard = ({ product }: { product: Product }) => {
           textTransform="uppercase"
           fontWeight="medium"
         >
-          {product.categories[0].name}
+          {product.categories[0]?.name}
         </Text>
         <CardTitle className="product-card-title">{product.name}</CardTitle>
       </CardHeader>
       <CardContent className="product-card-content">
         <Box className="image-wrapper">
           <Image
-            src={`${import.meta.env.VITE_SOME_KEY.BACKEND_URL}/${
-              product.photo
-            }`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/${product.photo}`}
             alt={product.name}
             borderRadius="lg"
             boxShadow="md"
@@ -57,7 +55,11 @@ export const ProductCard = ({ product }: { product: Product }) => {
           />
         </Box>
         <Text fontSize="2xl" fontWeight="bold" color="gray.500" mt={4}>
-          R$ {product.price}
+          R${" "}
+          {product.price.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
         </Text>
       </CardContent>
       <CardFooter className="product-card-footer">

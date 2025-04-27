@@ -15,7 +15,7 @@ export const useUpdateProduct = () => {
 
     try {
       const response = await axios.patch(
-        `${import.meta.env.VITE_SOME_KEY.BACKEND_URL}/product/${productId}`,
+        `${import.meta.env.VITE_BACKEND_URLL}/product/${productId}`,
         productData
       );
 

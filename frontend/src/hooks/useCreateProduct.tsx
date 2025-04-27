@@ -12,15 +12,22 @@ export const useCreateProduct = () => {
     setError(null);
     setSuccess(false);
 
+    const formData = new FormData();
+    if (productData.photo) {
+      formData.append("photo", productData.photo);
+      formData.append("name", productData.name);
+      formData.append("categoryIds", String(productData.categoryIds));
+      formData.append("price", String(productData.price));
+      formData.append("qty", String(productData.qty));
+    }
+
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_SOME_KEY.BACKEND_URL}/product`,
-        productData
+        `${import.meta.env.VITE_BACKEND_URL}/product`,
+        formData
       );
 
-      if (response.status === 201) {
-        setSuccess(true);
-      }
+      if (response.status === 201) setSuccess(true);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

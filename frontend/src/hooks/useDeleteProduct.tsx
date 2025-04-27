@@ -11,12 +11,10 @@ export const useDeleteProduct = () => {
 
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_SOME_KEY.BACKEND_URL}/product/${id}`
+        `${import.meta.env.VITE_BACKEND_URL}/product/${id}`
       );
 
-      if (response.status === 201) {
-        setSuccess(true);
-      }
+      if (response.status === 200) setSuccess(true);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

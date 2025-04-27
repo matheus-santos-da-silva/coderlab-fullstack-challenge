@@ -11,9 +11,9 @@ export const useProducts = () => {
     const getProducts = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_SOME_KEY.BACKEND_URL}/products`
+          `${import.meta.env.VITE_BACKEND_URL}/product`
         );
-        setProducts(response.data.products);
+        setProducts(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setError(

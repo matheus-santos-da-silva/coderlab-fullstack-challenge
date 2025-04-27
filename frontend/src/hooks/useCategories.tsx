@@ -11,9 +11,9 @@ export const useCategories = () => {
     const getCategories = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_SOME_KEY.BACKEND_URL}/category`
+          `${import.meta.env.VITE_BACKEND_URL}/category`
         );
-        setCategories(response.data.categories);
+        setCategories(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setError(
