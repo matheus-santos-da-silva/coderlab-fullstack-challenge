@@ -13,10 +13,18 @@ export const useUpdateProduct = () => {
     setError(null);
     setSuccess(false);
 
+    const formData = new FormData();
+
+    if (productData.photo) formData.append("photo", productData.photo);
+    if (productData.name) formData.append("name", productData.name);
+    formData.append("categoryIds", String(productData.categoryIds));
+    formData.append("price", String(productData.price));
+    formData.append("qty", String(productData.qty));
+
     try {
       const response = await axios.patch(
-        `${import.meta.env.VITE_BACKEND_URLL}/product/${productId}`,
-        productData
+        `${import.meta.env.VITE_BACKEND_URL}/product/${productId}`,
+        formData
       );
 
       if (response.status === 200) setSuccess(true);
