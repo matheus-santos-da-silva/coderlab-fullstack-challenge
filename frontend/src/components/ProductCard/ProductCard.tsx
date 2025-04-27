@@ -26,6 +26,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
 
   const handleDelete = async () => {
     await deleteProduct(product.id);
+    window.location.reload();
   };
 
   return (
