@@ -3,10 +3,35 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { ProductsRepositoryProtocol } from "./protocols";
 import { Product } from "src/domain/entities/product";
 import { CreateProductDTO } from "src/domain/DTO/create-product-DTO";
+import { UpdateProductDTO } from "src/domain/DTO/update-product-DTO";
 
 @Injectable()
 export class ProductsRepository implements ProductsRepositoryProtocol {
   constructor(private readonly prisma: PrismaService) {}
+
+  async update(
+    id: string,
+    { name, price, qty, categoryIds, photo }: UpdateProductDTO
+  ): Promise<void> {
+    try {
+      await this.prisma.product.update({
+        where: { id },
+        data: {
+          name: name,
+          price: price,
+          qty: qty,
+          photo: photo,
+          categories: {
+            connect: categoryIds.map((id) => ({ id })),
+          },
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(
+        "Erro ao atualizar o produto, tente novamente!"
+      );
+    }
+  }
 
   async delete(id: string): Promise<void> {
     try {
