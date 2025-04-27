@@ -25,7 +25,7 @@ export class CreateProductControllerDTO {
   price: number;
 
   @ValidateNested({ each: true })
-  photo: Express.Multer.File[];
+  photo: Express.Multer.File;
 
   @IsArray()
   @IsString({ each: true })
