@@ -8,6 +8,16 @@ import { CreateProductDTO } from "src/domain/DTO/create-product-DTO";
 export class ProductsRepository implements ProductsRepositoryProtocol {
   constructor(private readonly prisma: PrismaService) {}
 
+  async delete(id: string): Promise<void> {
+    try {
+      await this.prisma.product.delete({ where: { id } });
+    } catch (error) {
+      throw new BadRequestException(
+        "Erro ao deletar o produto, tente novamente!"
+      );
+    }
+  }
+
   async find(id: string): Promise<Product> {
     try {
       const product = await this.prisma.product.findUnique({

@@ -4,11 +4,13 @@ import {
   GetProductsProtocol,
   CreateProductProtocol,
   GetProductProtocol,
+  DeleteProductProtocol,
 } from "src/domain/use-cases-protocol/products/";
 import {
   GetProductUseCase,
   CreateProductUseCase,
   GetProductsUseCase,
+  DeleteProductUseCase,
 } from "./";
 
 @Module({
@@ -26,7 +28,16 @@ import {
       provide: GetProductProtocol,
       useClass: GetProductUseCase,
     },
+    {
+      provide: DeleteProductProtocol,
+      useClass: DeleteProductUseCase,
+    },
   ],
-  exports: [GetProductsProtocol, CreateProductProtocol, GetProductProtocol],
+  exports: [
+    GetProductsProtocol,
+    CreateProductProtocol,
+    GetProductProtocol,
+    DeleteProductProtocol,
+  ],
 })
 export class ProductsUseCasesModule {}

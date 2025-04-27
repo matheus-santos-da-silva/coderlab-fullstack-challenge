@@ -1,10 +1,11 @@
 import { Module } from "@nestjs/common";
+import { ProductsUseCasesModule } from "src/application/use-cases/products-use-cases.module";
 import {
   GetProductsController,
   CreateProductController,
   GetProductController,
+  DeleteProductController,
 } from "./";
-import { ProductsUseCasesModule } from "src/application/use-cases/products-use-cases.module";
 
 @Module({
   imports: [ProductsUseCasesModule],
@@ -12,6 +13,7 @@ import { ProductsUseCasesModule } from "src/application/use-cases/products-use-c
     GetProductsController,
     CreateProductController,
     GetProductController,
+    DeleteProductController,
   ],
 })
 export class ProductsControllersModule {}
