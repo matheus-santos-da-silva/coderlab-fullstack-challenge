@@ -59,6 +59,15 @@ export const ProductForm = () => {
     price,
     qtd,
   }: z.infer<typeof formSchema>) => {
+    if (productId === "0" && !photo) {
+      toaster.create({
+        title: "Selecione uma imagem para o produto!",
+        type: "error",
+      });
+
+      return;
+    }
+
     if (productId === "0") {
       await create({
         name,
