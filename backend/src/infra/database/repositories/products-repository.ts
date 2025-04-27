@@ -8,6 +8,20 @@ import { CreateProductDTO } from "src/domain/DTO/create-product-DTO";
 export class ProductsRepository implements ProductsRepositoryProtocol {
   constructor(private readonly prisma: PrismaService) {}
 
+  async find(id: string): Promise<Product> {
+    try {
+      const product = await this.prisma.product.findUnique({
+        where: { id },
+        include: { categories: true },
+      });
+      return product;
+    } catch (error) {
+      throw new BadRequestException(
+        "Erro ao encontrar as informações, tente novamente!"
+      );
+    }
+  }
+
   async create({
     name,
     categoryIds,

@@ -1,9 +1,15 @@
 import { Module } from "@nestjs/common";
-import { GetProductsProtocol } from "src/domain/use-cases-protocol/products/";
 import { ProductsRepositoriesModule } from "src/infra/database/repositories/products-repositories.module";
-import { GetProductsUseCase } from "./products/get-products-use-case";
-import { CreateProductProtocol } from "src/domain/use-cases-protocol/products/create-product";
-import { CreateProductUseCase } from "./products/create-product-use-case";
+import {
+  GetProductsProtocol,
+  CreateProductProtocol,
+  GetProductProtocol,
+} from "src/domain/use-cases-protocol/products/";
+import {
+  GetProductUseCase,
+  CreateProductUseCase,
+  GetProductsUseCase,
+} from "./";
 
 @Module({
   imports: [ProductsRepositoriesModule],
@@ -16,7 +22,11 @@ import { CreateProductUseCase } from "./products/create-product-use-case";
       provide: CreateProductProtocol,
       useClass: CreateProductUseCase,
     },
+    {
+      provide: GetProductProtocol,
+      useClass: GetProductUseCase,
+    },
   ],
-  exports: [GetProductsProtocol, CreateProductProtocol],
+  exports: [GetProductsProtocol, CreateProductProtocol, GetProductProtocol],
 })
 export class ProductsUseCasesModule {}
