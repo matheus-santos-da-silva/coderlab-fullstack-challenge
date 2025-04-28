@@ -10,13 +10,19 @@ services:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d coderlabs-challenge"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     depends_on:
-      - postgres-compose
+      postgres-compose:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres-compose:5432/coderlabs-challenge
       PORT: 3000
