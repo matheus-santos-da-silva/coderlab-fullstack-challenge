@@ -77,6 +77,7 @@ Esta camada é a que acessa serviços externos, como banco de dados, sistemas de
 - PostgreSQL
 - Multer
 - Docker
+- Jest
 
 ### Frontend
 
