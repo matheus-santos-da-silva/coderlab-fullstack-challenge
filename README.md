@@ -7,27 +7,19 @@
 ```
 $ git clone https://github.com/matheus-santos-da-silva/coderlab-fullstack-challenge
 ```
+### 2 - Na pasta frontend: renomeie o arquivo .env.example para .env 
 
-### 2 - Entre na pasta do frontend
-
-```
-cd ./frontend
-```
-
-### 3 - Renomeie o arquivo .env.example para .env e dentro dele modifique o arquivo VITE_BACKEND_URL para: 
+### 3 - Dentro de .env coloque esta variável:
 
 ```
 VITE_BACKEND_URL=http://localhost:3000
 ```
-
-### 4 - Vá para a raiz do projeto e depois rode o comando para o build:
+### 4 - Na raiz do projeto rode o comando para o build:
 
 ```
-cd ../
 docker compose up
 ```
-
-### 5 - Após finalizar o build, acesse localmente pelo navegador com essa url: localhost/product
+### 5 - Após finalizar o build, acesse localmente pelo navegador pela url: localhost/product
 
 ## Arquitetura:
 
@@ -51,7 +43,7 @@ Esta camada é a que acessa serviços externos, como banco de dados, sistemas de
 
 ## Tecnologias Utilizadas:
 
-### Backend (Todas as tecnologias utilizadas)
+### Backend
 - NodeJS
 - Typescript
 - NestJS
