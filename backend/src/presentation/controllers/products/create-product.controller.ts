@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Post,
@@ -34,6 +35,10 @@ export class CreateProductController {
     @Body(new ValidationPipe({ transform: true }))
     data: CreateProductControllerDTO
   ) {
+    if (!file) {
+      throw new BadRequestException("Imagem do produto é obrigatória.");
+    }
+
     try {
       await this.createProductUseCase.create({
         ...data,
