@@ -1,0 +1,33 @@
+services:
+  postgres-compose:
+    image: postgres
+    container_name: coderlabs-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: coderlabs-challenge
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres-compose
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres-compose:5432/coderlabs-challenge
+      PORT: 3000
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
