@@ -2,24 +2,49 @@
 
 ## Como rodar a aplicação:
 
-### 1 - Clone este repositório
+### 1 - Clone este repositório:
 
 ```
 $ git clone https://github.com/matheus-santos-da-silva/coderlab-fullstack-challenge
 ```
-### 2 - Na pasta frontend: renomeie o arquivo .env.example para .env 
+
+### 2 - Na pasta frontend: renomeie o arquivo .env.example para .env;
 
 ### 3 - Dentro de .env coloque esta variável:
 
 ```
 VITE_BACKEND_URL=http://localhost:3000
 ```
+
 ### 4 - Na raiz do projeto rode o comando para o build:
 
 ```
 docker compose up
 ```
+
 ### 5 - Após finalizar o build, acesse localmente pelo navegador pela url: localhost/product
+
+## Como rodar os testes:
+
+### 1 - Faça o build da aplicação caso ainda não tenha feito;
+
+### 2 - Na pasta backend: dê um yarn install para instalar as dependências localmente:
+
+```
+yarn install
+```
+
+### 3 - Rode os testes unitários:
+
+```
+yarn run test:unit
+```
+
+### 4 - Rode os testes e2e:
+
+```
+yarn run test:e2e
+```
 
 ## Arquitetura:
 
@@ -44,6 +69,7 @@ Esta camada é a que acessa serviços externos, como banco de dados, sistemas de
 ## Tecnologias Utilizadas:
 
 ### Backend
+
 - NodeJS
 - Typescript
 - NestJS
@@ -53,6 +79,7 @@ Esta camada é a que acessa serviços externos, como banco de dados, sistemas de
 - Docker
 
 ### Frontend
+
 - React
 - SASS
 - Shadcn/ui
@@ -61,14 +88,18 @@ Esta camada é a que acessa serviços externos, como banco de dados, sistemas de
 
 ## Razão da escolha das tecnologias
 
-### Prisma / PostgreSQL - 
+### Prisma / PostgreSQL -
+
 Resolvi utilizar eles por entender a facilidade que o Prisma traz em trabalhar com o PostgreSQL, além de já ter familiaridade com ambos.
-  
-### Multer - 
+
+### Multer -
+
 Utilizei o Multer para lidar com o upload das imagens dos produtos vindas do front, também por já ter trabalhado com ele antes.
-  
+
 ### Chakra UI / Shadcn UI -
+
 Com relação a essas duas ferramentas resolvi utilizar para cumprir os requisitos, nunca tinha trabalhado com elas antes, mas achei incrível a forma que elas agilizam o desenvolvimento.
 
 ### Zod -
-E resolvi utilizar o Zod para a validação de dados pela praticidade e segurança que ele traz.  
+
+E resolvi utilizar o Zod para a validação de dados pela praticidade e segurança que ele traz.
