@@ -12,7 +12,6 @@ yarn-error.log*
 /coverage
 
 .env
-.env.testing
 .env.local
 
 .temp
